@@ -1,0 +1,174 @@
+<title>Contact & Reserve | Salt & Light Tool Rental</title>
+<meta name="description" content="Message Salt & Light Tool Rental to check availability and reserve a tool in Orange County, CA.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700;800&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<div class="topbar">
+  <div class="container">
+    <span>Serving Orange County, CA &amp; surrounding areas</span>
+    <div class="topbar-links">
+      <a href="tel:+17145550134">[Your Phone Number]</a>
+      <a href="contact.html">Message Us to Reserve</a>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <nav class="nav container">
+    <a class="brand" href="index.html">
+      <img src="assets/img/logo-nav.png" alt="Salt & Light Tool Rental logo">
+      <span class="brand-word">
+        <strong>Salt &amp; Light</strong>
+        <span>Tool Rental &middot; OC</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="tools.html">Tools</a>
+      <a href="about.html">About</a>
+      <a href="policies.html">Policies</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-gold btn-sm" href="contact.html"><span class="long">Reserve a&nbsp;</span>Tool</a>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<section class="page-header">
+  <div class="container">
+    <div class="breadcrumb">Contact</div>
+    <h1>Let's Get You Set Up</h1>
+    <p id="contact-intro">Message us with the tool and dates you need — we'll confirm availability and get you scheduled.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="icon" data-icon="phone"></div>
+        <h3>Call or Text</h3>
+        <p>Fastest way to check same-day availability.</p>
+        <a class="value" href="tel:+17145550134">[Your Phone Number]</a>
+      </div>
+      <div class="contact-card">
+        <div class="icon" data-icon="mail"></div>
+        <h3>Email</h3>
+        <p>Send tool details, dates, and job site location.</p>
+        <a class="value" href="mailto:hello@saltandlighttoolrental.com">[your@email.com]</a>
+      </div>
+      <div class="contact-card">
+        <div class="icon" data-icon="message"></div>
+        <h3>Social / DM</h3>
+        <p>Message us on Instagram or Facebook.</p>
+        <a class="value" href="#">[@yourhandle]</a>
+      </div>
+      <div class="contact-card">
+        <div class="icon" data-icon="mappin"></div>
+        <h3>Service Area</h3>
+        <p>Pickup available by appointment.</p>
+        <a class="value" href="#">Orange County, CA</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow">Reserving a Tool</div>
+      <h2>How to Book</h2>
+    </div>
+    <div class="reserve-steps">
+      <div class="reserve-step">
+        <div class="num">1</div>
+        <div>
+          <h4>Message us the details</h4>
+          <p>Tell us which tool, your rental dates, and job location. Check the <a href="tools.html">tool catalog</a> for current rates.</p>
+        </div>
+      </div>
+      <div class="reserve-step">
+        <div class="num">2</div>
+        <div>
+          <h4>We confirm availability &amp; pricing</h4>
+          <p>We'll reply with confirmed pricing, pickup time, and what to bring (valid ID + card for the deposit).</p>
+        </div>
+      </div>
+      <div class="reserve-step">
+        <div class="num">3</div>
+        <div>
+          <h4>Sign, pick up &amp; get to work</h4>
+          <p>We review the tool's condition together, sign the <a href="policies.html">rental agreement</a>, and you're on your way.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Pre-fill the intro line if a tool was passed from the catalog (?tool=...)
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var tool = params.get("tool");
+    if (tool) {
+      var el = document.getElementById("contact-intro");
+      el.textContent = 'Interested in the "' + tool + '" — message us with your preferred dates and we\'ll confirm availability.';
+    }
+  })();
+</script>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/img/logo-footer.png" alt="Salt & Light Tool Rental logo">
+        <div>
+          <strong>Salt &amp; Light Tool Rental</strong>
+          <div class="tagline">Built to Work. Called to Serve.</div>
+          <p>Quality tool rentals serving Orange County, CA.</p>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="tools.html">Tool Catalog</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="policies.html">Rental Policies</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+17145550134">[Your Phone Number]</a></li>
+          <li><a href="mailto:hello@saltandlighttoolrental.com">[your@email.com]</a></li>
+          <li><a href="contact.html">Send a Message</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Service Area</h4>
+        <ul>
+          <li>Orange County, CA</li>
+          <li>Pickup by appointment</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Salt &amp; Light Tool Rental. All rights reserved.</span>
+      <span>Matthew 5:13&ndash;16</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/icons.js"></script>
+<script src="js/main.js"></script>

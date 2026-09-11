@@ -1,0 +1,145 @@
+{
+  "categories": [
+    { "id": "nailers", "label": "Nail Guns & Fasteners", "icon": "nailer" },
+    { "id": "drills", "label": "Drills & Drivers", "icon": "drill" },
+    { "id": "saws", "label": "Saws", "icon": "saw" },
+    { "id": "sanding", "label": "Sanders & Grinders", "icon": "sander" },
+    { "id": "demo", "label": "Concrete & Demolition", "icon": "demolition" },
+    { "id": "power", "label": "Outdoor Power", "icon": "generator" },
+    { "id": "access", "label": "Ladders & Access", "icon": "ladder" }
+  ],
+  "tools": [
+    {
+      "id": "paslode-finish-nailer",
+      "name": "Paslode Cordless Finish Nailer",
+      "category": "nailers",
+      "icon": "nailer",
+      "image": "assets/img/featured-paslode-nailer.jpg",
+      "blurb": "Battery-powered finish nailer for trim, baseboard & cabinetry. No hose, no compressor needed.",
+      "includes": "Battery, charger, fuel cell & nails included",
+      "dayRate": 45,
+      "weekendRate": 120,
+      "featured": true
+    },
+    {
+      "id": "framing-nailer",
+      "name": "Pneumatic Framing Nailer",
+      "category": "nailers",
+      "icon": "nailer",
+      "blurb": "Full-size framing nailer for deck, wall & structural work. Compressor & hose included.",
+      "includes": "Compressor, hose & safety glasses included",
+      "dayRate": 50,
+      "weekendRate": 130
+    },
+    {
+      "id": "drill-driver-kit",
+      "name": "20V Cordless Drill/Driver Kit",
+      "category": "drills",
+      "icon": "drill",
+      "blurb": "Lightweight drill/driver for everyday jobs — decking, furniture assembly, general repairs.",
+      "includes": "2 batteries, charger & bit set included",
+      "dayRate": 25,
+      "weekendRate": 65
+    },
+    {
+      "id": "rotary-hammer-drill",
+      "name": "SDS Rotary Hammer Drill",
+      "category": "drills",
+      "icon": "drill",
+      "blurb": "Heavy-duty hammer drill for concrete, block & masonry anchoring.",
+      "includes": "Case & bit set included",
+      "dayRate": 40,
+      "weekendRate": 105
+    },
+    {
+      "id": "circular-saw",
+      "name": "7-1/4\" Circular Saw",
+      "category": "saws",
+      "icon": "saw",
+      "blurb": "Corded circular saw for framing, sheathing & general cutting.",
+      "includes": "Blade & rip guide included",
+      "dayRate": 30,
+      "weekendRate": 80
+    },
+    {
+      "id": "miter-saw",
+      "name": "12\" Sliding Compound Miter Saw",
+      "category": "saws",
+      "icon": "saw",
+      "blurb": "Precision crosscuts and miters for trim, framing & finish carpentry.",
+      "includes": "Blade & stand available on request",
+      "dayRate": 55,
+      "weekendRate": 145
+    },
+    {
+      "id": "jobsite-table-saw",
+      "name": "Portable Jobsite Table Saw",
+      "category": "saws",
+      "icon": "saw",
+      "blurb": "Compact table saw with folding stand — rips sheet goods and framing lumber cleanly.",
+      "includes": "Blade & push stick included",
+      "dayRate": 50,
+      "weekendRate": 135
+    },
+    {
+      "id": "orbital-sander",
+      "name": "Random Orbital Sander",
+      "category": "sanding",
+      "icon": "sander",
+      "blurb": "Smooth, swirl-free finish sanding on wood, drywall patches & furniture.",
+      "includes": "Sanding pads included",
+      "dayRate": 20,
+      "weekendRate": 50
+    },
+    {
+      "id": "angle-grinder",
+      "name": "4-1/2\" Angle Grinder",
+      "category": "sanding",
+      "icon": "sander",
+      "blurb": "Cutting, grinding & surface prep on metal, tile & concrete.",
+      "includes": "Cutting & grinding discs included",
+      "dayRate": 25,
+      "weekendRate": 60
+    },
+    {
+      "id": "demo-hammer",
+      "name": "Electric Demolition Hammer",
+      "category": "demo",
+      "icon": "demolition",
+      "blurb": "Heavy breaker for concrete removal, tile demo & tear-outs.",
+      "includes": "Chisel & point bit included",
+      "dayRate": 65,
+      "weekendRate": 175
+    },
+    {
+      "id": "portable-generator",
+      "name": "3500W Portable Generator",
+      "category": "power",
+      "icon": "generator",
+      "blurb": "Reliable job-site power for tools, lighting & outdoor events.",
+      "includes": "Full tank at pickup, return full",
+      "dayRate": 60,
+      "weekendRate": 160
+    },
+    {
+      "id": "pressure-washer",
+      "name": "3000 PSI Gas Pressure Washer",
+      "category": "power",
+      "icon": "pressurewasher",
+      "blurb": "Driveways, siding, decks & equipment — fast, deep clean.",
+      "includes": "Surface cleaner attachment available",
+      "dayRate": 55,
+      "weekendRate": 145
+    },
+    {
+      "id": "extension-ladder",
+      "name": "24 ft. Extension Ladder",
+      "category": "access",
+      "icon": "ladder",
+      "blurb": "Reaches second-story work — gutters, roofing, siding & painting.",
+      "includes": "Ratchet straps for transport included",
+      "dayRate": 30,
+      "weekendRate": 75
+    }
+  ]
+}
