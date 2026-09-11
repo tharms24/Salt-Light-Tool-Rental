@@ -38,9 +38,13 @@ today for the Paslode nailer, pulled from your own "For Rent" flyer). Category i
 in the `categories` array at the top of the same file — add a new category there before using
 its id on a tool.
 
-**The starter catalog is example inventory** (drills, saws, nailers, sanders, demo, outdoor
-power, ladders) with placeholder pricing based on the one real listing you provided. Swap it for
-your actual fleet and rates before publishing.
+**Real vs. placeholder inventory:** 9 tools now come from your own photos (Hilti gas cut-off saw,
+Bosch Brute breaker hammer + chisel set, DeWalt miter saw, DeWalt & Honda generators, angle
+grinder, RIDGID planer, Graco paint sprayer) — real names and specs, with day/weekend pricing
+estimated off the one confirmed rate you gave us (the Paslode nailer). The rest (basic drill kit,
+framing nailer, circular saw, table saw, orbital sander, pressure washer, extension ladder) are
+still generic placeholders. Check/adjust pricing on the real entries and swap the placeholders
+for your actual gear whenever you're ready.
 
 ## Updating contact info
 

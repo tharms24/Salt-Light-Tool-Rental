@@ -6,6 +6,8 @@
     { "id": "sanding", "label": "Sanders & Grinders", "icon": "sander" },
     { "id": "demo", "label": "Concrete & Demolition", "icon": "demolition" },
     { "id": "power", "label": "Outdoor Power", "icon": "generator" },
+    { "id": "woodworking", "label": "Woodworking", "icon": "planer" },
+    { "id": "painting", "label": "Painting & Finishing", "icon": "sprayer" },
     { "id": "access", "label": "Ladders & Access", "icon": "ladder" }
   ],
   "tools": [
@@ -62,14 +64,26 @@
       "weekendRate": 80
     },
     {
-      "id": "miter-saw",
-      "name": "12\" Sliding Compound Miter Saw",
+      "id": "dewalt-miter-saw",
+      "name": "DeWalt 12\" Sliding Compound Miter Saw",
       "category": "saws",
       "icon": "saw",
-      "blurb": "Precision crosscuts and miters for trim, framing & finish carpentry.",
-      "includes": "Blade & stand available on request",
+      "image": "assets/img/tool-dewalt-miter-saw.jpg",
+      "blurb": "Double-bevel sliding miter saw with XPS cut-line positioning for precise crosscuts, miters & trim work.",
+      "includes": "Blade included; stand available on request",
       "dayRate": 55,
       "weekendRate": 145
+    },
+    {
+      "id": "hilti-cutoff-saw",
+      "name": "Hilti 14\" Gas Cut-Off Saw",
+      "category": "saws",
+      "icon": "saw",
+      "image": "assets/img/tool-hilti-cutoff-saw.jpg",
+      "blurb": "Gas-powered cut-off saw for concrete, asphalt & masonry — fast, clean cuts on slabs, driveways & curbs.",
+      "includes": "14\" diamond blade included",
+      "dayRate": 85,
+      "weekendRate": 220
     },
     {
       "id": "jobsite-table-saw",
@@ -92,34 +106,59 @@
       "weekendRate": 50
     },
     {
-      "id": "angle-grinder",
-      "name": "4-1/2\" Angle Grinder",
+      "id": "angle-grinder-diamond",
+      "name": "Angle Grinder w/ Diamond Wheel",
       "category": "sanding",
       "icon": "sander",
-      "blurb": "Cutting, grinding & surface prep on metal, tile & concrete.",
-      "includes": "Cutting & grinding discs included",
-      "dayRate": 25,
-      "weekendRate": 60
+      "image": "assets/img/tool-angle-grinder-diamond.jpg",
+      "blurb": "Cutting & surface grinding on concrete, tile & metal — fitted with a diamond blade or diamond cup wheel.",
+      "includes": "Diamond blade & cup wheel available",
+      "dayRate": 30,
+      "weekendRate": 75
     },
     {
-      "id": "demo-hammer",
-      "name": "Electric Demolition Hammer",
+      "id": "bosch-brute-breaker",
+      "name": "Bosch Brute Breaker Hammer",
       "category": "demo",
       "icon": "demolition",
-      "blurb": "Heavy breaker for concrete removal, tile demo & tear-outs.",
-      "includes": "Chisel & point bit included",
-      "dayRate": 65,
-      "weekendRate": 175
+      "image": "assets/img/tool-bosch-brute-breaker.jpg",
+      "blurb": "Heavy 35-lb electric breaker hammer on a rolling cart for concrete slabs, footings & tear-outs.",
+      "includes": "Rolling cart included",
+      "dayRate": 75,
+      "weekendRate": 195
     },
     {
-      "id": "portable-generator",
-      "name": "3500W Portable Generator",
+      "id": "demo-chisel-set",
+      "name": "SDS-Max Demolition Chisel Set",
+      "category": "demo",
+      "icon": "demolition",
+      "image": "assets/img/tool-demo-chisel-set.jpg",
+      "blurb": "Point, flat & spade chisel bits for the breaker hammer — matched to the job, from breaking to prying.",
+      "includes": "Point, flat & 20\" spade chisel included",
+      "dayRate": 15,
+      "weekendRate": 35
+    },
+    {
+      "id": "dewalt-generator",
+      "name": "DeWalt 4000W Portable Generator",
       "category": "power",
       "icon": "generator",
-      "blurb": "Reliable job-site power for tools, lighting & outdoor events.",
+      "image": "assets/img/tool-dewalt-generator.jpg",
+      "blurb": "Gas generator with three 120V outlets — reliable job-site power for tools, lighting & site trailers.",
       "includes": "Full tank at pickup, return full",
-      "dayRate": 60,
-      "weekendRate": 160
+      "dayRate": 65,
+      "weekendRate": 170
+    },
+    {
+      "id": "honda-generator",
+      "name": "Honda EB4000X Generator",
+      "category": "power",
+      "icon": "generator",
+      "image": "assets/img/tool-honda-generator.jpg",
+      "blurb": "Commercial-grade, GFCI-protected generator with 120V/240V output for heavier equipment & longer runs.",
+      "includes": "Full tank at pickup, return full",
+      "dayRate": 70,
+      "weekendRate": 185
     },
     {
       "id": "pressure-washer",
@@ -130,6 +169,28 @@
       "includes": "Surface cleaner attachment available",
       "dayRate": 55,
       "weekendRate": 145
+    },
+    {
+      "id": "ridgid-planer",
+      "name": "RIDGID 13\" Thickness Planer",
+      "category": "woodworking",
+      "icon": "planer",
+      "image": "assets/img/tool-ridgid-planer.jpg",
+      "blurb": "Benchtop thickness planer for dimensioning rough lumber to a smooth, consistent thickness.",
+      "includes": "Extension tables included",
+      "dayRate": 45,
+      "weekendRate": 115
+    },
+    {
+      "id": "graco-paint-sprayer",
+      "name": "Graco Magnum X5 Airless Paint Sprayer",
+      "category": "painting",
+      "icon": "sprayer",
+      "image": "assets/img/tool-graco-paint-sprayer.jpg",
+      "blurb": "Airless sprayer for fences, siding, cabinets & large interior or exterior paint jobs.",
+      "includes": "Hose & spray tip included",
+      "dayRate": 50,
+      "weekendRate": 130
     },
     {
       "id": "extension-ladder",

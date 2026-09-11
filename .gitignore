@@ -4,6 +4,7 @@ Thumbs.db
 # Internal business spreadsheet — not part of the public site
 Tool Tracker.xlsx
 
-# Raw logo source exports (the optimized versions live in assets/img)
+# Raw logo/photo source exports (the optimized versions live in assets/img)
 2f9cc513-a909-4242-9de4-f90145e9efc0.png
 682eee2c-e80e-4427-9179-0bf24aa113dc.png
+*.HEIC

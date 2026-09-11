@@ -54,5 +54,9 @@ var ICONS = {
 
   message: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5A2 2 0 015 3.5h14a2 2 0 012 2V15a2 2 0 01-2 2H8l-5 4z"/></svg>',
 
-  wrench: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6.5a4 4 0 00-5.4 4.6L3 17.2l2.8 2.8 6-6.1a4 4 0 004.6-5.4l-2.7 2.7-2.6-.6-.6-2.6z"/></svg>'
+  wrench: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6.5a4 4 0 00-5.4 4.6L3 17.2l2.8 2.8 6-6.1a4 4 0 004.6-5.4l-2.7 2.7-2.6-.6-.6-2.6z"/></svg>',
+
+  sprayer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21V11.5a2 2 0 012-2h1a2 2 0 012 2V21"/><path d="M7 21h9"/><rect x="9" y="6" width="5" height="3.5" rx="1"/><path d="M13 6V4a1 1 0 011-1h1"/><path d="M17.5 8.5c1.6.5 2.5 1.8 2.5 3.3M17.5 5.7c2.6.6 4.5 2.8 4.5 6.1"/></svg>',
+
+  planer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="7" rx="1.5"/><path d="M6 13v2M18 13v2M2.5 9.5h19"/><path d="M9 6V4.5M15 6V4.5"/></svg>'
 };
