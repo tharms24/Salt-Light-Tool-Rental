@@ -48,9 +48,10 @@ for your actual gear whenever you're ready.
 
 ## Updating contact info
 
-Placeholder contact details (`[Your Phone Number]`, `[your@email.com]`, `[@yourhandle]`) appear
-in the top bar, footer, and `contact.html` on every page. Search for those bracketed strings
-across the project and replace them with your real phone, email, and social handles.
+Phone and email are live: Tyler (949) 355-3733 / harmontyler24@gmail.com and Nick (949) 500-3584
+/ nickj.doud@gmail.com, in the top bar, footer, and `contact.html` on every page. The Instagram/
+Facebook handle on `contact.html` is still a placeholder (`[@yourhandle]`) — search for that
+bracketed string and swap in your real social link whenever you set one up.
 
 ## Logo & images
 
