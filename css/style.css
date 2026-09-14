@@ -694,6 +694,11 @@ p {
   color: var(--gold-dark);
   margin-bottom: 6px;
 }
+.tool-model {
+  font-size: 0.78rem;
+  color: var(--gray);
+  margin-bottom: 8px;
+}
 .tool-body h3 { margin-bottom: 6px; font-size: 1.15rem; }
 .tool-body p { font-size: 0.9rem; margin-bottom: 16px; }
 .tool-rates {

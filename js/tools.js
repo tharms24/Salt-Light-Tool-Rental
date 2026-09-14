@@ -15,8 +15,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
   function init(categories, tools) {
-    renderFilters(categories);
-    renderTools(tools);
+    var categoryLabels = {};
+    categories.forEach(function (c) { categoryLabels[c.id] = c.label; });
+
+    var startCategory = "all";
+    var hash = (location.hash || "").replace("#", "");
+    if (hash && categoryLabels[hash]) startCategory = hash;
+
+    renderFilters(categories, startCategory);
+
+    var startTools = startCategory === "all" ? tools : tools.filter(function (t) { return t.category === startCategory; });
+    renderTools(startTools, categoryLabels);
 
     filterBar.addEventListener("click", function (e) {
       var btn = e.target.closest(".filter-btn");
@@ -27,19 +36,19 @@ document.addEventListener("DOMContentLoaded", function () {
       btn.classList.add("is-active");
       var cat = btn.dataset.category;
       var filtered = cat === "all" ? tools : tools.filter(function (t) { return t.category === cat; });
-      renderTools(filtered);
+      renderTools(filtered, categoryLabels);
     });
   }
 
-  function renderFilters(categories) {
-    var html = '<button class="filter-btn is-active" data-category="all">All Tools</button>';
+  function renderFilters(categories, activeCategory) {
+    var html = '<button class="filter-btn' + (activeCategory === "all" ? " is-active" : "") + '" data-category="all">All Tools</button>';
     categories.forEach(function (c) {
-      html += '<button class="filter-btn" data-category="' + c.id + '">' + c.label + '</button>';
+      html += '<button class="filter-btn' + (activeCategory === c.id ? " is-active" : "") + '" data-category="' + c.id + '">' + c.label + '</button>';
     });
     filterBar.innerHTML = html;
   }
 
-  function renderTools(tools) {
+  function renderTools(tools, categoryLabels) {
     if (!tools.length) {
       grid.innerHTML = "";
       emptyState.classList.add("is-visible");
@@ -52,7 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
         ? '<img src="' + t.image + '" alt="' + t.name + '">'
         : '<div class="icon">' + (ICONS[t.icon] || ICONS.wrench) + '</div>';
       var tag = t.featured ? '<span class="tool-tag">Featured</span>' : "";
-      var catLabel = catLabelFor(t.category);
+      var catLabel = categoryLabels[t.category] || t.category;
+      var model = t.includes ? '<div class="tool-model">Model: ' + t.includes + '</div>' : "";
 
       return (
         '<article class="tool-card" data-category="' + t.category + '">' +
@@ -60,28 +70,16 @@ document.addEventListener("DOMContentLoaded", function () {
           '<div class="tool-body">' +
             '<div class="tool-cat">' + catLabel + '</div>' +
             '<h3>' + t.name + '</h3>' +
-            '<p>' + t.blurb + (t.includes ? " " + t.includes + "." : "") + '</p>' +
+            model +
+            '<p>' + t.blurb + '</p>' +
             '<div class="tool-rates">' +
               '<div><strong>$' + t.dayRate + '</strong><span>Per Day</span></div>' +
-              '<div><strong>$' + t.weekendRate + '</strong><span>Per Weekend</span></div>' +
+              '<div><strong>$' + t.weekRate + '</strong><span>Per Week</span></div>' +
             '</div>' +
             '<a class="btn btn-navy btn-block" href="contact.html?tool=' + encodeURIComponent(t.name) + '">Reserve This Tool</a>' +
           '</div>' +
         '</article>'
       );
     }).join("");
-  }
-
-  function catLabelFor(id) {
-    var map = {
-      nailers: "Nail Guns & Fasteners",
-      drills: "Drills & Drivers",
-      saws: "Saws",
-      sanding: "Sanders & Grinders",
-      demo: "Concrete & Demolition",
-      power: "Outdoor Power",
-      access: "Ladders & Access"
-    };
-    return map[id] || id;
   }
 });

@@ -22,29 +22,31 @@ HTML changes needed. Each entry looks like:
 
 ```json
 {
-  "id": "orbital-sander",
-  "name": "Random Orbital Sander",
-  "category": "sanding",
+  "id": "rigid-grinder",
+  "name": "RIDGID Angle Grinder",
+  "category": "grinders",
   "icon": "sander",
-  "blurb": "Smooth, swirl-free finish sanding on wood, drywall patches & furniture.",
-  "includes": "Sanding pads included",
-  "dayRate": 20,
-  "weekendRate": 50
+  "blurb": "Cutting, grinding & surface prep on metal, tile & concrete.",
+  "includes": "R1020",
+  "dayRate": 40,
+  "weekRate": 120
 }
 ```
 
-Add `"image": "assets/img/your-photo.jpg"` to show a real photo instead of the line icon (used
-today for the Paslode nailer, pulled from your own "For Rent" flyer). Category ids/labels live
-in the `categories` array at the top of the same file — add a new category there before using
-its id on a tool.
+`dayRate` and `weekRate` are the daily and weekly rental prices — this matches the two rate
+columns in your "Tool Pricing" spreadsheet, so updating a price here or there stays a one-line
+edit. `includes` is used for the model number when there is one (shown as "Model: R1020" on the
+card). Add `"image": "assets/img/your-photo.jpg"` to show a real photo instead of the line icon —
+two tools (RIDGID Angle Grinder and DeWalt Angle Grinder) don't have one yet, so they fall back to
+an icon. Category ids/labels live in the `categories` array at the top of the same file — add a
+new category there before using its id on a tool.
 
-**Real vs. placeholder inventory:** 9 tools now come from your own photos (Hilti gas cut-off saw,
-Bosch Brute breaker hammer + chisel set, DeWalt miter saw, DeWalt & Honda generators, angle
-grinder, RIDGID planer, Graco paint sprayer) — real names and specs, with day/weekend pricing
-estimated off the one confirmed rate you gave us (the Paslode nailer). The rest (basic drill kit,
-framing nailer, circular saw, table saw, orbital sander, pressure washer, extension ladder) are
-still generic placeholders. Check/adjust pricing on the real entries and swap the placeholders
-for your actual gear whenever you're ready.
+**The full 20-tool catalog is your real fleet**, rebuilt from `Tool Pricing.xlsx`: Hilti DSH 700 &
+700-X cement saws, Bosch jack hammer, DeWalt & Honda generators, DeWalt air compressor, RIDGID &
+Makita metal saws, DeWalt DWS780 miter saw, RIDGID 13" planer, Makita hand planer, RIDGID & DeWalt
+grinders, RIDGID drain snake, Echo chainsaw, three Paslode nail guns (16-ga, 18-ga, 30° framing),
+and two Graco paint sprayers. Prices match the spreadsheet exactly. Keep both in sync going
+forward — whichever you edit first, update the other to match.
 
 ## Updating contact info
 
@@ -82,5 +84,7 @@ filtering on `tools.html`.)
 
 ## Not included in this repo
 
-`Tool Tracker.xlsx` (your internal fleet/financial spreadsheet) and the raw logo export PNGs are
-excluded via `.gitignore` — they stay on your machine but aren't published.
+`Tool Tracker.xlsx` and `Tool Pricing.xlsx` (internal spreadsheets), and the raw logo/photo source
+files (HEIC, AVIF, WEBP, and the handful of originally-named JPG/PNG product shots) are excluded
+via `.gitignore` — only the optimized copies in `assets/img/` are published. They stay on your
+machine but aren't tracked in git.

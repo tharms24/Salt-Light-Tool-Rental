@@ -58,5 +58,9 @@ var ICONS = {
 
   sprayer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21V11.5a2 2 0 012-2h1a2 2 0 012 2V21"/><path d="M7 21h9"/><rect x="9" y="6" width="5" height="3.5" rx="1"/><path d="M13 6V4a1 1 0 011-1h1"/><path d="M17.5 8.5c1.6.5 2.5 1.8 2.5 3.3M17.5 5.7c2.6.6 4.5 2.8 4.5 6.1"/></svg>',
 
-  planer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="7" rx="1.5"/><path d="M6 13v2M18 13v2M2.5 9.5h19"/><path d="M9 6V4.5M15 6V4.5"/></svg>'
+  planer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="7" rx="1.5"/><path d="M6 13v2M18 13v2M2.5 9.5h19"/><path d="M9 6V4.5M15 6V4.5"/></svg>',
+
+  compressor: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="8" height="16" rx="4"/><circle cx="6.5" cy="8" r="1.3"/><path d="M10.5 15h4a2 2 0 002-2v-2a2 2 0 00-2-2h-1.5"/><circle cx="17" cy="15" r="3"/><path d="M17 13.3V15l1.1.9"/></svg>',
+
+  chainsaw: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15.5c0-3.6 2.9-8 6.8-8H19a2 2 0 012 2v1a2 2 0 01-2 2h-2.5"/><path d="M3 15.5h13.5a2 2 0 002-2"/><path d="M4 13.2v4.6M6 13.2v4.6M8 13.2v4.6M10 13.2v4.6M12 13.2v4.6M14 13.2v4.6"/><path d="M9.8 7.5a5 5 0 00-3.3 4.2"/></svg>'
 };

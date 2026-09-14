@@ -1,10 +1,21 @@
 .DS_Store
 Thumbs.db
 
-# Internal business spreadsheet — not part of the public site
+# Internal business spreadsheets — not part of the public site
 Tool Tracker.xlsx
+Tool Pricing.xlsx
 
 # Raw logo/photo source exports (the optimized versions live in assets/img)
 2f9cc513-a909-4242-9de4-f90145e9efc0.png
 682eee2c-e80e-4427-9179-0bf24aa113dc.png
 *.HEIC
+*.avif
+*.webp
+Dewalt Generator DXGNR4000.jpg
+EHCO_Chainsaws_CS-310_StaticShot2.jpg
+Hilti DSH 700-x.jpg
+Hilti DSH 700.jpg
+Honda EB 4000X.png
+Makita Metal Saw.jpg
+Paslode 16 Ga.jpg
+Paslode 18.jpg
