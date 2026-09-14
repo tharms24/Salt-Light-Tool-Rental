@@ -1,90 +1,129 @@
-# Salt & Light Tool Rental — Website
+# Salt & Light Tool Rental
 
-A static marketing site for Salt & Light Tool Rental (Orange County, CA), styled after the
-business's own logo: navy, gold, and cream, with a coastal cross-and-wave motif.
+A real web app now: a Next.js site backed by a Postgres database, with a
+password-protected admin page for managing tools and bookings, and a live
+booking calendar customers use to reserve dates right on each tool's page.
 
-No build step, no framework — plain HTML, CSS, and vanilla JS. Deploys as-is to GitHub Pages
-or any static host.
+The old static HTML/CSS/JS site is archived in [`legacy-static-site/`](legacy-static-site/)
+for reference — nothing there is used by the live site anymore.
 
-## Pages
+## What's here
 
-- `index.html` — Home
-- `tools.html` — Tool catalog (data-driven, filterable by category)
-- `about.html` — Story, mission, values
-- `policies.html` — Rental policy summary + link to the full agreement PDF
-- `contact.html` — Contact info and how to reserve
+- **Public site** — home, tool catalog, tool detail + booking calendar, about, policies, contact
+- **Admin page** (`/admin`) — add/edit/deactivate/delete tools, view & cancel bookings, block off dates for maintenance
+- **Database** — Postgres (Neon, via Vercel's Postgres integration), managed with Drizzle ORM
+- **Booking system** — customers pick dates on a calendar; availability is checked again on the server at the moment of confirmation, inside a database transaction, so two people can't book the same dates at once
+- **Email notifications** — Resend emails `hello@saltandlighttoolrental.com` whenever a booking is confirmed
+- **No online payment** — bookings just reserve dates. ID, deposit, and payment are still collected in person at pickup, per the existing Rental Agreement
 
-## Editing the tool catalog
+## One-time setup checklist
 
-Everything in the catalog on `tools.html` (and the category tiles on the home page) comes from
-[`data/tools.json`](data/tools.json). To add, remove, or reprice a tool, edit that file — no
-HTML changes needed. Each entry looks like:
+You'll need to do a few things in web dashboards that I can't do for you (they involve your accounts). Everything else is already built and just needs these connected.
 
-```json
-{
-  "id": "rigid-grinder",
-  "name": "RIDGID Angle Grinder",
-  "category": "grinders",
-  "icon": "sander",
-  "blurb": "Cutting, grinding & surface prep on metal, tile & concrete.",
-  "includes": "R1020",
-  "dayRate": 40,
-  "weekRate": 120
-}
-```
+### 1. Deploy to Vercel
 
-`dayRate` and `weekRate` are the daily and weekly rental prices — this matches the two rate
-columns in your "Tool Pricing" spreadsheet, so updating a price here or there stays a one-line
-edit. `includes` is used for the model number when there is one (shown as "Model: R1020" on the
-card). Add `"image": "assets/img/your-photo.jpg"` to show a real photo instead of the line icon —
-two tools (RIDGID Angle Grinder and DeWalt Angle Grinder) don't have one yet, so they fall back to
-an icon. Category ids/labels live in the `categories` array at the top of the same file — add a
-new category there before using its id on a tool.
+If you haven't finished importing the GitHub repo into Vercel yet, do that first (Vercel → Add New → Project → import `tharms24/Salt-Light-Tool-Rental`). Leave build settings on default — Vercel auto-detects Next.js.
 
-**The full 20-tool catalog is your real fleet**, rebuilt from `Tool Pricing.xlsx`: Hilti DSH 700 &
-700-X cement saws, Bosch jack hammer, DeWalt & Honda generators, DeWalt air compressor, RIDGID &
-Makita metal saws, DeWalt DWS780 miter saw, RIDGID 13" planer, Makita hand planer, RIDGID & DeWalt
-grinders, RIDGID drain snake, Echo chainsaw, three Paslode nail guns (16-ga, 18-ga, 30° framing),
-and two Graco paint sprayers. Prices match the spreadsheet exactly. Keep both in sync going
-forward — whichever you edit first, update the other to match.
+### 2. Add a Postgres database
 
-## Updating contact info
+In your Vercel project: **Storage** tab → **Create Database** → **Postgres** (this provisions a Neon database and is free at this scale). Vercel automatically adds a `DATABASE_URL` environment variable to your project — you don't need to copy/paste anything.
 
-Phone and email are live: Tyler (949) 355-3733, Nick (949) 500-3584, and the business inbox
-hello@saltandlighttoolrental.com, in the top bar, footer, and `contact.html` on every page. The
-Instagram/Facebook handle on `contact.html` is still a placeholder (`[@yourhandle]`) — search for that
-bracketed string and swap in your real social link whenever you set one up.
+### 3. Add Blob storage (for tool photo uploads)
 
-## Logo & images
+Same **Storage** tab → **Create Database** → **Blob**. This lets you upload a photo when adding/editing a tool in the admin page. Vercel adds `BLOB_READ_WRITE_TOKEN` automatically.
 
-`assets/img/` holds pre-sized exports of your logo (`logo-nav.png`, `logo-footer.png`,
-`logo-large.png`) plus favicons, cropped from the source files in this folder. If you get a
-cleaner/transparent version of the logo later, re-export at the same filenames to update it
-everywhere at once.
+### 4. Set the admin password and session secret
 
-## Previewing locally
+In **Project Settings → Environment Variables**, add:
 
-Any static file server works. This project already includes a `.claude/launch.json` so Claude
-Code's browser preview can serve it directly. From the terminal, one option (macOS ships Ruby):
+| Name | Value |
+|---|---|
+| `ADMIN_PASSWORD` | Pick a password you and Nick will both use to log into `/admin` |
+| `SESSION_SECRET` | A long random string — run `openssl rand -hex 32` in Terminal and paste the result |
+
+### 5. Set up email notifications (Resend)
+
+1. Sign up at [resend.com](https://resend.com) (free tier is plenty).
+2. Get an API key from the Resend dashboard.
+3. In Vercel env vars, add:
+
+| Name | Value |
+|---|---|
+| `RESEND_API_KEY` | Your Resend API key |
+| `NOTIFICATION_EMAIL` | `hello@saltandlighttoolrental.com` (or wherever you want booking alerts sent) |
+| `NOTIFICATION_FROM_EMAIL` | `onboarding@resend.dev` to start (works immediately, but can only send to *your own* Resend account email until you verify a domain). Once you verify saltandlighttoolrental.com in Resend, change this to something like `bookings@saltandlighttoolrental.com` |
+
+### 6. Run the database migration and import your tools
+
+This creates the `tools`, `bookings`, and `tool_blocks` tables and loads your existing 20-tool catalog. From your computer, in this project folder:
 
 ```bash
-ruby -run -e httpd . -p 8080
+npm install
 ```
 
-Then open `http://localhost:8080`. (Tools.html's filtering needs `fetch()` over `http://`, so
-opening `index.html` directly via `file://` works for every page except the live catalog
-filtering on `tools.html`.)
+Then copy the `DATABASE_URL` value from Vercel (Project Settings → Environment Variables → click to reveal) into a new `.env.local` file (copy `.env.example` to `.env.local` first and fill it in). Then:
 
-## Deploying (GitHub Pages)
+```bash
+npm run db:migrate
+npm run db:seed
+```
 
-1. Push this repo to GitHub (already set up — see below).
-2. In the repo on GitHub: **Settings → Pages → Source → Deploy from a branch**, branch `main`,
-   folder `/ (root)`.
-3. Your site will be live at `https://<username>.github.io/<repo-name>/` within a few minutes.
+`db:seed` is safe to re-run — it updates existing tools by their slug instead of duplicating them.
 
-## Not included in this repo
+### 7. Redeploy
 
-`Tool Tracker.xlsx` and `Tool Pricing.xlsx` (internal spreadsheets), and the raw logo/photo source
-files (HEIC, AVIF, WEBP, and the handful of originally-named JPG/PNG product shots) are excluded
-via `.gitignore` — only the optimized copies in `assets/img/` are published. They stay on your
-machine but aren't tracked in git.
+Once the env vars are set, trigger a redeploy in Vercel (or just push any small change) so the app picks them up.
+
+That's it — the site is live and fully functional at that point.
+
+## Using it day-to-day (no coding required)
+
+**Go to `yoursite.com/admin` and log in with the admin password.**
+
+- **Add a tool:** Admin → Tools → "+ Add Tool". Fill in name, category, price per day/week, a description, and optionally upload a photo. Save.
+- **Edit a tool:** Admin → Tools → click its name. Change anything, save. The live site updates immediately.
+- **Take a tool off the site temporarily:** Admin → Tools → "Deactivate" next to it. It disappears from the public catalog but isn't deleted — click "Activate" to bring it back.
+- **Delete a tool for good:** "Delete" next to it. This only works if the tool has never been booked (to protect your booking history) — deactivate it instead if it has bookings.
+- **Block dates for maintenance/repairs:** Admin → Tools → click the tool → scroll to "Blocked Dates" → pick a date range and an optional reason. Customers won't be able to select those dates.
+- **See bookings:** Admin → Bookings shows everyone who's booked, their contact info, dates, and whether they chose pickup or delivery. "Cancel" frees up those dates again.
+- **Get notified of new bookings:** an email goes to whatever address you set as `NOTIFICATION_EMAIL` the moment someone confirms a booking.
+
+## Local development
+
+```bash
+npm install
+cp .env.example .env.local   # fill in DATABASE_URL at minimum
+npm run dev
+```
+
+Open `http://localhost:3000`. Admin is at `http://localhost:3000/admin`.
+
+## Project structure
+
+```
+app/(site)/       Public pages (home, tools, about, policies, contact)
+app/admin/         Admin login + password-protected dashboard
+app/api/           Availability endpoint used by the booking calendar
+components/        Shared UI (header, footer, tool cards, calendar, booking widget)
+lib/                Server actions (booking, tool CRUD, blocks), auth, email, icons
+db/                 Drizzle schema, migrations, and the one-time seed script
+public/assets/     Images, logo, and the rental agreement PDF
+legacy-static-site/  The old static site, kept for reference only
+```
+
+## Notes on how bookings stay accurate
+
+Every booking confirmation runs inside a database transaction that locks the
+tool's row, re-checks the requested dates against both confirmed bookings and
+admin-blocked dates, and only then inserts the booking. If two people try to
+book overlapping dates for the same tool at the same moment, the second one
+gets a clear "those dates were just booked" message instead of a silent
+double-booking — this check happens on the server regardless of what the
+calendar showed in the browser.
+
+## Known gaps / things you might want next
+
+- **Pickup location text** is a generic placeholder on the booking form — worth editing to your real pickup address/instructions (`components/BookingWidget.tsx`).
+- **Instagram/Facebook handle** on the Contact page is still a placeholder.
+- **No online payment** — by design, per your current process. Let me know if that should change later.
+- **SMS/Slack notifications** weren't set up (you picked email-only) — easy to add later if you want a text alert too.

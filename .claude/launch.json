@@ -3,9 +3,9 @@
   "configurations": [
     {
       "name": "salt-and-light-site",
-      "runtimeExecutable": "ruby",
-      "runtimeArgs": ["-run", "-e", "httpd", "/private/tmp/claude-501/-Users-harmon-Desktop-Salt---Light/66d7581f-ef29-471d-8194-daf6734d19db/scratchpad/preview", "-p", "8791"],
-      "port": 8791
+      "runtimeExecutable": "/Users/harmon/.local/node/bin/node",
+      "runtimeArgs": ["node_modules/next/dist/bin/next", "dev"],
+      "port": 3000
     }
   ]
 }
