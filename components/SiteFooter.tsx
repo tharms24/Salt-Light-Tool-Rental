@@ -44,6 +44,12 @@ export default function SiteFooter() {
         </div>
         <div className="footer-bottom">
           <span>&copy; {year} Salt &amp; Light Tool Rental. All rights reserved.</span>
+          <span>
+            <Link href="/privacy-policy" style={{ marginRight: 16 }}>
+              Privacy Policy
+            </Link>
+            <Link href="/terms">Terms &amp; Conditions</Link>
+          </span>
           <span>Matthew 5:13&ndash;16</span>
         </div>
       </div>
