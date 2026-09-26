@@ -6,6 +6,7 @@ import { db } from "@/db";
 import { tools, bookings } from "@/db/schema";
 import { getUnavailableRanges, isRangeAvailable, isoDate } from "@/lib/availability";
 import { sendBookingNotification } from "@/lib/email";
+import { sendBookingSmsNotification } from "@/lib/sms";
 
 const bookingSchema = z
   .object({
@@ -99,19 +100,30 @@ export async function createBooking(input: BookingFormInput): Promise<CreateBook
       return { booking, toolName: tool.name };
     });
 
-    // Notification email is best-effort and happens after the booking is
-    // already safely committed — a failed email must never undo a booking.
-    await sendBookingNotification({
-      toolName: result.toolName,
-      startDate: result.booking.startDate,
-      endDate: result.booking.endDate,
-      customerName: result.booking.customerName,
-      customerEmail: result.booking.customerEmail,
-      customerPhone: result.booking.customerPhone,
-      fulfillment: result.booking.fulfillment,
-      deliveryAddress: result.booking.deliveryAddress,
-      totalPrice: result.booking.totalPrice,
-    });
+    // Notifications are best-effort and happen after the booking is already
+    // safely committed — a failed email or text must never undo a booking.
+    await Promise.allSettled([
+      sendBookingNotification({
+        toolName: result.toolName,
+        startDate: result.booking.startDate,
+        endDate: result.booking.endDate,
+        customerName: result.booking.customerName,
+        customerEmail: result.booking.customerEmail,
+        customerPhone: result.booking.customerPhone,
+        fulfillment: result.booking.fulfillment,
+        deliveryAddress: result.booking.deliveryAddress,
+        totalPrice: result.booking.totalPrice,
+      }),
+      sendBookingSmsNotification({
+        toolName: result.toolName,
+        startDate: result.booking.startDate,
+        endDate: result.booking.endDate,
+        customerName: result.booking.customerName,
+        customerEmail: result.booking.customerEmail,
+        customerPhone: result.booking.customerPhone,
+        fulfillment: result.booking.fulfillment,
+      }),
+    ]);
 
     return { ok: true, bookingId: result.booking.id, totalPrice: result.booking.totalPrice };
   } catch (err) {

@@ -14,6 +14,7 @@ for reference — nothing there is used by the live site anymore.
 - **Database** — Postgres (Neon, via Vercel's Postgres integration), managed with Drizzle ORM
 - **Booking system** — customers pick dates on a calendar; availability is checked again on the server at the moment of confirmation, inside a database transaction, so two people can't book the same dates at once
 - **Email notifications** — Resend emails `hello@saltandlighttoolrental.com` whenever a booking is confirmed
+- **Text notifications** — Twilio texts Tyler and Nick's phones on every confirmed booking, alongside the email above
 - **No online payment** — bookings just reserve dates. ID, deposit, and payment are still collected in person at pickup, per the existing Rental Agreement
 
 ## One-time setup checklist
@@ -53,7 +54,22 @@ In **Project Settings → Environment Variables**, add:
 | `NOTIFICATION_EMAIL` | `hello@saltandlighttoolrental.com` (or wherever you want booking alerts sent) |
 | `NOTIFICATION_FROM_EMAIL` | `onboarding@resend.dev` to start (works immediately, but can only send to *your own* Resend account email until you verify a domain). Once you verify saltandlighttoolrental.com in Resend, change this to something like `bookings@saltandlighttoolrental.com` |
 
-### 6. Run the database migration and import your tools
+### 6. Set up text notifications (Twilio)
+
+1. Sign up at [twilio.com](https://twilio.com).
+2. On the Console dashboard, copy your **Account SID** and **Auth Token**.
+3. Go to **Phone Numbers → Buy a number**, get one with SMS capability (a couple dollars/month).
+4. In Vercel env vars, add:
+
+| Name | Value |
+|---|---|
+| `TWILIO_ACCOUNT_SID` | From the Console dashboard |
+| `TWILIO_AUTH_TOKEN` | From the Console dashboard |
+| `TWILIO_FROM_NUMBER` | The number you bought, e.g. `+19495551234` |
+
+**Trial accounts:** Twilio trial accounts can only text phone numbers you've manually verified in the Console (Phone Numbers → Verified Caller IDs) — verify both Tyler's and Nick's numbers there, or upgrade to a paid account to skip that step entirely.
+
+### 7. Run the database migration and import your tools
 
 This creates the `tools`, `bookings`, and `tool_blocks` tables and loads your existing 20-tool catalog. From your computer, in this project folder:
 
@@ -70,7 +86,7 @@ npm run db:seed
 
 `db:seed` is safe to re-run — it updates existing tools by their slug instead of duplicating them.
 
-### 7. Redeploy
+### 8. Redeploy
 
 Once the env vars are set, trigger a redeploy in Vercel (or just push any small change) so the app picks them up.
 
@@ -86,7 +102,7 @@ That's it — the site is live and fully functional at that point.
 - **Delete a tool for good:** "Delete" next to it. This only works if the tool has never been booked (to protect your booking history) — deactivate it instead if it has bookings.
 - **Block dates for maintenance/repairs:** Admin → Tools → click the tool → scroll to "Blocked Dates" → pick a date range and an optional reason. Customers won't be able to select those dates.
 - **See bookings:** Admin → Bookings shows everyone who's booked, their contact info, dates, and whether they chose pickup or delivery. "Cancel" frees up those dates again.
-- **Get notified of new bookings:** an email goes to whatever address you set as `NOTIFICATION_EMAIL` the moment someone confirms a booking.
+- **Get notified of new bookings:** an email goes to `NOTIFICATION_EMAIL`, and a text goes to both Tyler's and Nick's phones, the moment someone confirms a booking — same info in both (tool, dates, customer name/phone/email, pickup or delivery).
 
 ## Local development
 
@@ -105,7 +121,7 @@ app/(site)/       Public pages (home, tools, about, policies, contact)
 app/admin/         Admin login + password-protected dashboard
 app/api/           Availability endpoint used by the booking calendar
 components/        Shared UI (header, footer, tool cards, calendar, booking widget)
-lib/                Server actions (booking, tool CRUD, blocks), auth, email, icons
+lib/                Server actions (booking, tool CRUD, blocks), auth, email, sms, icons
 db/                 Drizzle schema, migrations, and the one-time seed script
 public/assets/     Images, logo, and the rental agreement PDF
 legacy-static-site/  The old static site, kept for reference only
@@ -126,4 +142,3 @@ calendar showed in the browser.
 - **Pickup location text** is a generic placeholder on the booking form — worth editing to your real pickup address/instructions (`components/BookingWidget.tsx`).
 - **Instagram/Facebook handle** on the Contact page is still a placeholder.
 - **No online payment** — by design, per your current process. Let me know if that should change later.
-- **SMS/Slack notifications** weren't set up (you picked email-only) — easy to add later if you want a text alert too.
