@@ -2,6 +2,7 @@ import { eq } from "drizzle-orm";
 import type { Metadata } from "next";
 import { db } from "@/db";
 import { tools } from "@/db/schema";
+import { safeQuery } from "@/lib/safe-query";
 import ToolsCatalog from "@/components/ToolsCatalog";
 
 export const metadata: Metadata = {
@@ -19,10 +20,14 @@ interface Props {
 export default async function ToolsPage({ searchParams }: Props) {
   const { category } = await searchParams;
 
-  const allTools = await db.query.tools.findMany({
-    where: eq(tools.active, true),
-    orderBy: (t, { asc }) => [asc(t.category), asc(t.name)],
-  });
+  const allTools = await safeQuery(
+    () =>
+      db.query.tools.findMany({
+        where: eq(tools.active, true),
+        orderBy: (t, { asc }) => [asc(t.category), asc(t.name)],
+      }),
+    []
+  );
 
   return (
     <>

@@ -42,6 +42,8 @@ next-env.d.ts
 # Internal business spreadsheets — not part of the public site
 Tool Tracker.xlsx
 Tool Pricing.xlsx
+Marketing List Salt & Light.xlsx
+~$Marketing List Salt & Light.xlsx
 
 # Raw logo/photo source exports (the optimized versions live in public/assets/img)
 2f9cc513-a909-4242-9de4-f90145e9efc0.png

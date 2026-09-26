@@ -5,16 +5,21 @@ import { db } from "@/db";
 import { tools } from "@/db/schema";
 import { Icon } from "@/lib/icons";
 import { CATEGORIES } from "@/lib/categories";
+import { safeQuery } from "@/lib/safe-query";
 import ToolCard from "@/components/ToolCard";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const popularTools = await db.query.tools.findMany({
-    where: eq(tools.active, true),
-    orderBy: [desc(tools.createdAt)],
-    limit: 3,
-  });
+  const popularTools = await safeQuery(
+    () =>
+      db.query.tools.findMany({
+        where: eq(tools.active, true),
+        orderBy: [desc(tools.createdAt)],
+        limit: 3,
+      }),
+    []
+  );
 
   return (
     <>
