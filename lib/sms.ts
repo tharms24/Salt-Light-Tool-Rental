@@ -44,7 +44,7 @@ export async function sendBookingSmsNotification(input: BookingSmsInput): Promis
   const client = twilio(accountSid, authToken);
 
   const body = [
-    `New booking: ${input.toolName}`,
+    `Salt & Light Tool Rental: New booking: ${input.toolName}`,
     `${formatDate(input.startDate)} → ${formatDate(input.endDate)} · ${
       input.fulfillment === "delivery" ? "Delivery" : "Pickup"
     }`,
